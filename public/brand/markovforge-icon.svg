@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F17" />
+      <stop offset="50%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#080C14" />
+    </linearGradient>
+
+    <!-- Forge Fire / Amber Gradients -->
+    <linearGradient id="forgeFlame" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF3B00" />
+      <stop offset="50%" stop-color="#FF7A00" />
+      <stop offset="100%" stop-color="#FFB800" />
+    </linearGradient>
+
+    <linearGradient id="forgeGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFC837" />
+      <stop offset="100%" stop-color="#FF8008" />
+    </linearGradient>
+
+    <!-- Steel / Tech Gradients -->
+    <linearGradient id="steelFacet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+
+    <linearGradient id="steelLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#64748B" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="forgeGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="intenseGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="16" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="512" height="512" rx="108" fill="url(#bgGrad)" />
+  <rect width="508" height="508" x="2" y="2" rx="106" fill="none" stroke="#1F2937" stroke-width="2" opacity="0.6" />
+
+  <!-- Ambient Backdrop Glow -->
+  <circle cx="256" cy="270" r="140" fill="#FF5E00" opacity="0.12" filter="url(#intenseGlow)" />
+
+  <!-- Geometric Anvil Base (Dark Chiseled Steel) -->
+  <g transform="translate(0, 10)">
+    <!-- Base Plate -->
+    <path d="M 146 376 L 366 376 L 340 336 L 172 336 Z" fill="url(#steelFacet)" stroke="#475569" stroke-width="1.5" />
+    <!-- Anvil Waist & Facets -->
+    <path d="M 172 336 L 340 336 L 316 260 L 196 260 Z" fill="#161F30" stroke="#334155" stroke-width="1.5" />
+    <path d="M 216 336 L 256 260 L 296 336 Z" fill="url(#steelFacet)" opacity="0.5" />
+    <!-- Anvil Table & Horn Contour -->
+    <path d="M 112 216 Q 146 216 196 240 L 316 240 Q 366 216 400 216 L 386 260 L 126 260 Z" fill="url(#steelLight)" opacity="0.2" />
+  </g>
+
+  <!-- Markov State Graph Loop Embedded in Forge Heat (The Engine) -->
+  <!-- Outer Directed Flow Arcs -->
+  <g id="markov-flow" filter="url(#forgeGlow)">
+    <!-- Transition Path 1: S0 (Left) -> S1 (Top) -->
+    <path d="M 175 255 C 160 185, 215 140, 256 140" fill="none" stroke="url(#forgeFlame)" stroke-width="5" stroke-linecap="round" stroke-dasharray="6,4" />
+    <!-- Arrowhead 1 -->
+    <polygon points="256,134 268,140 256,146" fill="#FFB800" />
+
+    <!-- Transition Path 2: S1 (Top) -> S2 (Right) -->
+    <path d="M 256 140 C 297 140, 352 185, 337 255" fill="none" stroke="url(#forgeFlame)" stroke-width="5" stroke-linecap="round" />
+    <!-- Arrowhead 2 -->
+    <polygon points="334,260 342,248 330,248" fill="#FFB800" transform="rotate(15, 337, 255)" />
+
+    <!-- Transition Path 3: S2 (Right) -> S0 (Left) Bottom Feedback Loop -->
+    <path d="M 337 255 C 310 325, 202 325, 175 255" fill="none" stroke="url(#forgeFlame)" stroke-width="5" stroke-linecap="round" />
+    <!-- Arrowhead 3 -->
+    <polygon points="175,250 183,262 171,262" fill="#FF7A00" transform="rotate(-20, 175, 255)" />
+
+    <!-- Self-Loop on State S1 (Agent Reasoning Loop) -->
+    <path d="M 244 135 C 235 95, 277 95, 268 135" fill="none" stroke="#FFD000" stroke-width="3.5" stroke-linecap="round" />
+  </g>
+
+  <!-- Markov Nodes (States) -->
+  <g id="markov-nodes">
+    <!-- State S0: Perception / State Observation -->
+    <g transform="translate(170, 255)">
+      <circle cx="0" cy="0" r="28" fill="#0E1626" stroke="url(#forgeFlame)" stroke-width="4" filter="url(#forgeGlow)" />
+      <circle cx="0" cy="0" r="16" fill="url(#forgeGold)" />
+      <circle cx="0" cy="0" r="6" fill="#FFFFFF" />
+    </g>
+
+    <!-- State S2: Action / Environment Execution -->
+    <g transform="translate(342, 255)">
+      <circle cx="0" cy="0" r="28" fill="#0E1626" stroke="url(#forgeFlame)" stroke-width="4" filter="url(#forgeGlow)" />
+      <circle cx="0" cy="0" r="16" fill="url(#forgeGold)" />
+      <circle cx="0" cy="0" r="6" fill="#FFFFFF" />
+    </g>
+
+    <!-- State S1 (Top Apex): Policy / Value Core -->
+    <g transform="translate(256, 140)">
+      <circle cx="0" cy="0" r="32" fill="#150B05" stroke="url(#forgeGold)" stroke-width="4.5" filter="url(#intenseGlow)" />
+      <circle cx="0" cy="0" r="18" fill="url(#forgeFlame)" />
+      <circle cx="0" cy="0" r="7" fill="#FFF7ED" />
+    </g>
+  </g>
+
+  <!-- Central Harness Energy Forge Core (The Crucible) -->
+  <g transform="translate(256, 255)">
+    <!-- Central Pulsing Markov Core -->
+    <polygon points="0,-24 21,12 -21,12" fill="url(#forgeFlame)" opacity="0.85" filter="url(#forgeGlow)" />
+    <circle cx="0" cy="0" r="8" fill="#FFFFFF" filter="url(#forgeGlow)" />
+  </g>
+
+  <!-- Rising Sparks / Engineering Rays -->
+  <g opacity="0.85" filter="url(#forgeGlow)">
+    <circle cx="210" cy="98" r="3" fill="#FFB800" />
+    <circle cx="304" cy="92" r="2.5" fill="#FF7A00" />
+    <circle cx="256" cy="65" r="3.5" fill="#FFE58F" />
+    <circle cx="160" cy="120" r="2" fill="#FF9900" />
+    <circle cx="350" cy="115" r="2.5" fill="#FFC837" />
+  </g>
+</svg>

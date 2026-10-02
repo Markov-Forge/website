@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 280" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGradHorizontal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090D15" />
+      <stop offset="50%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#0A0E1A" />
+    </linearGradient>
+
+    <!-- Forge Amber Gradients -->
+    <linearGradient id="forgeFlameHoriz" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF3B00" />
+      <stop offset="50%" stop-color="#FF7A00" />
+      <stop offset="100%" stop-color="#FFB800" />
+    </linearGradient>
+
+    <linearGradient id="forgeGoldHoriz" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD166" />
+      <stop offset="100%" stop-color="#FF6B35" />
+    </linearGradient>
+
+    <!-- Steel / Tech Gradients -->
+    <linearGradient id="steelFacetHoriz" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="forgeGlowHoriz" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="280" rx="28" fill="url(#bgGradHorizontal)" />
+  <rect width="956" height="276" x="2" y="2" rx="26" fill="none" stroke="#1E293B" stroke-width="1.5" />
+
+  <!-- LOGO EMBLEM (Left: Center at x=140, y=140, scaled ~0.65) -->
+  <g transform="translate(140, 140) scale(0.68) translate(-256, -256)">
+    <!-- Ambient Backdrop Glow -->
+    <circle cx="256" cy="260" r="130" fill="#FF5E00" opacity="0.15" filter="url(#forgeGlowHoriz)" />
+
+    <!-- Geometric Anvil Base -->
+    <g transform="translate(0, 10)">
+      <path d="M 146 376 L 366 376 L 340 336 L 172 336 Z" fill="url(#steelFacetHoriz)" stroke="#475569" stroke-width="2" />
+      <path d="M 172 336 L 340 336 L 316 260 L 196 260 Z" fill="#161F30" stroke="#334155" stroke-width="2" />
+      <path d="M 216 336 L 256 260 L 296 336 Z" fill="url(#steelFacetHoriz)" opacity="0.5" />
+    </g>
+
+    <!-- Markov Flow Arcs -->
+    <g filter="url(#forgeGlowHoriz)">
+      <!-- S0 -> S1 -->
+      <path d="M 175 255 C 160 185, 215 140, 256 140" fill="none" stroke="url(#forgeFlameHoriz)" stroke-width="5" stroke-linecap="round" stroke-dasharray="6,4" />
+      <polygon points="256,134 268,140 256,146" fill="#FFB800" />
+
+      <!-- S1 -> S2 -->
+      <path d="M 256 140 C 297 140, 352 185, 337 255" fill="none" stroke="url(#forgeFlameHoriz)" stroke-width="5" stroke-linecap="round" />
+      <polygon points="334,260 342,248 330,248" fill="#FFB800" transform="rotate(15, 337, 255)" />
+
+      <!-- S2 -> S0 Loop -->
+      <path d="M 337 255 C 310 325, 202 325, 175 255" fill="none" stroke="url(#forgeFlameHoriz)" stroke-width="5" stroke-linecap="round" />
+      <polygon points="175,250 183,262 171,262" fill="#FF7A00" transform="rotate(-20, 175, 255)" />
+
+      <!-- Self-Loop on S1 -->
+      <path d="M 244 135 C 235 95, 277 95, 268 135" fill="none" stroke="#FFD000" stroke-width="3.5" stroke-linecap="round" />
+    </g>
+
+    <!-- Markov Nodes -->
+    <g>
+      <!-- S0 -->
+      <g transform="translate(170, 255)">
+        <circle cx="0" cy="0" r="26" fill="#0E1626" stroke="url(#forgeFlameHoriz)" stroke-width="4" filter="url(#forgeGlowHoriz)" />
+        <circle cx="0" cy="0" r="14" fill="url(#forgeGoldHoriz)" />
+        <circle cx="0" cy="0" r="5" fill="#FFFFFF" />
+      </g>
+      <!-- S2 -->
+      <g transform="translate(342, 255)">
+        <circle cx="0" cy="0" r="26" fill="#0E1626" stroke="url(#forgeFlameHoriz)" stroke-width="4" filter="url(#forgeGlowHoriz)" />
+        <circle cx="0" cy="0" r="14" fill="url(#forgeGoldHoriz)" />
+        <circle cx="0" cy="0" r="5" fill="#FFFFFF" />
+      </g>
+      <!-- S1 -->
+      <g transform="translate(256, 140)">
+        <circle cx="0" cy="0" r="30" fill="#150B05" stroke="url(#forgeGoldHoriz)" stroke-width="4.5" filter="url(#forgeGlowHoriz)" />
+        <circle cx="0" cy="0" r="16" fill="url(#forgeFlameHoriz)" />
+        <circle cx="0" cy="0" r="6" fill="#FFF7ED" />
+      </g>
+      <!-- Core Energy -->
+      <polygon points="256,235 274,268 238,268" fill="url(#forgeFlameHoriz)" opacity="0.85" filter="url(#forgeGlowHoriz)" />
+      <circle cx="256" cy="257" r="7" fill="#FFFFFF" filter="url(#forgeGlowHoriz)" />
+    </g>
+
+    <!-- Sparks -->
+    <g opacity="0.8" filter="url(#forgeGlowHoriz)">
+      <circle cx="210" cy="98" r="3" fill="#FFB800" />
+      <circle cx="304" cy="92" r="2.5" fill="#FF7A00" />
+      <circle cx="256" cy="65" r="3.5" fill="#FFE58F" />
+    </g>
+  </g>
+
+  <!-- WORDMARK & TYPOGRAPHY -->
+  <g transform="translate(260, 0)">
+    <!-- Brand Name -->
+    <text x="0" y="145" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="800" font-size="64" letter-spacing="-1">
+      <tspan fill="#F8FAFC">MARKOV</tspan><tspan fill="url(#forgeFlameHoriz)">FORGE</tspan><tspan fill="#475569" font-weight="400" font-size="38">.COM</tspan>
+    </text>
+
+    <!-- Subtitle / Positioning Tagline -->
+    <text x="4" y="185" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="600" font-size="14.5" letter-spacing="4.5" fill="#94A3B8">
+      AGENT HARNESS &amp; SYSTEMS ENGINEERING
+    </text>
+
+    <!-- Accent Underline Track -->
+    <rect x="4" y="204" width="460" height="2" rx="1" fill="#1E293B" />
+    <rect x="4" y="204" width="130" height="2" rx="1" fill="url(#forgeFlameHoriz)" filter="url(#forgeGlowHoriz)" />
+
+    <!-- Feature Pillars Badges -->
+    <g transform="translate(4, 222)" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#64748B">
+      <text x="0" y="0">ORCHESTRATION</text>
+      <circle cx="112" cy="-3.5" r="2" fill="#FF7A00" />
+      <text x="124" y="0">RLHF</text>
+      <circle cx="170" cy="-3.5" r="2" fill="#FF7A00" />
+      <text x="182" y="0">LLM SERVING</text>
+      <circle cx="278" cy="-3.5" r="2" fill="#FF7A00" />
+      <text x="290" y="0">CLOUD-NATIVE</text>
+    </g>
+  </g>
+</svg>
