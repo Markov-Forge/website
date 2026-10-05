@@ -1,0 +1,46 @@
+name: Refresh package-lock.json
+
+on:
+  workflow_dispatch:
+
+jobs:
+  refresh-lockfile:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Clean install
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install
+      - name: Open PR with updated lockfile
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git add package-lock.json
+          if git diff --cached --quiet; then
+            echo "No changes to package-lock.json, skipping PR."
+            exit 0
+          fi
+          BRANCH="chore/refresh-package-lock"
+          git checkout -B "$BRANCH"
+          git commit -m "chore: refresh package-lock.json"
+          git push --force origin "$BRANCH"
+          PR_COUNT=$(gh pr list --head "$BRANCH" --state open --json number --jq 'length')
+          if [ "$PR_COUNT" = "0" ]; then
+            gh pr create \
+              --base main \
+              --head "$BRANCH" \
+              --title "chore: refresh package-lock.json" \
+              --body "Automated package-lock.json refresh via the refresh-lockfile workflow."
+          else
+            echo "PR already open for $BRANCH; branch updated in place."
+          fi
