@@ -8,6 +8,6 @@ export const site = {
   email: "info@markovforge.com",
   links: {
     linkedin: "https://www.linkedin.com/company/markov-forge",
-    github: "https://github.com/Markov-Forge",
+    github: "https://github.com/markov-forge",
   },
 };
